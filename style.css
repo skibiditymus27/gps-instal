@@ -1,0 +1,187 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+header {
+  background: linear-gradient(to right, #004e92, #ff0000);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+header h1 { margin: 0; font-size: 2.2rem; }
+header p { margin: 5px 0 0; font-size: 1.1rem; opacity: 0.85; }
+
+section {
+  background: #fff;
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+section.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 { text-align: center; margin-bottom: 30px; position: relative; }
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ff0000;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.services ul { list-style: none; padding: 0; margin: 0; }
+.services li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+.services li:hover { background: rgba(255,0,0,0.05); }
+
+.reviews .review {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0,78,146,0.05);
+  border-left: 4px solid #004e92;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.reviews .review:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+input, textarea {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: inherit;
+}
+input:focus, textarea:focus {
+  border-color: #004e92;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0,78,146,0.5);
+}
+button {
+  background: #004e92;
+  color: white;
+  padding: 14px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-family: inherit;
+}
+button:hover { background: #ff0000; transform: translateY(-2px); }
+
+.phone-section {
+  background: #004e92;
+  text-align: center;
+  padding: 15px 0;
+  max-width: 250px;
+  margin: 0 auto 40px;
+  border-radius: 8px;
+}
+.phone-link {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+.phone-link:hover { color: #ff0000; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000428;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Modal */
+.modal.hidden { display: none !important; }
+.modal {
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal.show { opacity: 1; pointer-events: auto; }
+
+.modal.show .modal-content {
+  animation: fadeInScale 0.35s ease forwards;
+}
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 30px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  position: relative;
+}
+.modal-content h3 { color: #004e92; margin-bottom: 12px; }
+.modal-content p { color: #ff0000; font-weight: 600; font-size: 1.1rem; }
+.close-button {
+  position: absolute;
+  top: 8px; right: 12px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #004e92;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: color 0.3s;
+}
+.close-button:hover { color: #ff0000; }
+
+@media (max-width: 768px) {
+  header h1 { font-size: 1.8rem; }
+  section { padding: 25px 15px; margin: 30px auto; }
+  h2 { font-size: 1.5rem; }
+  .phone-link { font-size: 1.3rem; }
+  .phone-section { max-width: 200px; }
+}
+@media (max-width: 480px) {
+  header h1 { font-size: 1.5rem; }
+  header p { font-size: 0.9rem; }
+  h2 { font-size: 1.3rem; }
+  input, textarea, button { font-size: 0.95rem; }
+}
