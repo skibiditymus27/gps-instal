@@ -1,14 +1,27 @@
-# My First Website  
+# GPS INSTAL Landing Page
 
-This is my personal project – a simple website built with **HTML, CSS, and JavaScript**.  
-The goal of this project is to practice web development and learn how to structure and publish a website.  
+Responsywna strona prezentująca ofertę firmy GPS INSTAL (technika grzewcza, serwis, automatyzacja). Projekt skupia się na przejrzystej strukturze treści, dostępności oraz nowoczesnym wyglądzie.
 
-## Features
-- Responsive design  
-- Clean layout  
-- Easy to expand  
+## Najważniejsze sekcje
+- O nas – krótkie przedstawienie firmy i kluczowych wyróżników.
+- Usługi – lista dostępnych usług z wyróżnionymi korzyściami.
+- Realizacje – przykładowe projekty wraz ze szczegółami.
+- Opinie klientów – referencje w formie cytatów.
+- Formularz kontaktowy – walidacja, komunikaty `aria-live`, modal potwierdzający wysyłkę.
+- CTA – szybki kontakt telefoniczny.
 
-## Technologies Used
-- HTML5  
-- CSS3  
-- JavaScript  
+## Funkcje i usprawnienia
+- Semantyczny HTML z nawigacją i skip linkiem.
+- Animacje sekcji oparte o `IntersectionObserver` z obsługą `prefers-reduced-motion`.
+- Modal z pułapką fokusu, obsługą klawiatury oraz zamykania `Esc`.
+- Ulepszona responsywność, typografia `clamp`, lepszy kontrast.
+- Formularz z podstawową walidacją (numer telefonu, pola wymagane).
+
+## Technologie
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+
+## Uruchomienie
+1. Otwórz plik `index.html` w przeglądarce.
+2. Upewnij się, że `style.css` i `script.js` znajdują się w tym samym katalogu.
