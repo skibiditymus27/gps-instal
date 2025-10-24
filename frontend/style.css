@@ -186,7 +186,7 @@ h2::after {
 }
 
 .services li::before {
-  content: '\\2022';
+  content: '\2022';
   color: var(--clr-accent);
   font-size: 1.6rem;
   line-height: 0;
