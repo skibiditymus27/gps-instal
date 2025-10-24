@@ -1,0 +1,10 @@
+process.env.NODE_ENV = 'test';
+process.env.PORT = '0';
+process.env.PGHOST = process.env.PGHOST || 'localhost';
+process.env.PGPORT = process.env.PGPORT || '5432';
+process.env.PGDATABASE = process.env.PGDATABASE || 'gpsinstal_test';
+process.env.PGUSER = process.env.PGUSER || 'postgres';
+process.env.PGPASSWORD = process.env.PGPASSWORD || 'postgres';
+process.env.ALLOW_ORIGINS = 'http://localhost';
+process.env.RATE_LIMIT_WINDOW_MINUTES = '1';
+process.env.RATE_LIMIT_MAX = '10';
