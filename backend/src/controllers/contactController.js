@@ -12,7 +12,11 @@ async function handleContact(req, res, next) {
     const stored = await saveContactRequest(data, meta);
 
     sendNotification(data)
-      .catch(error => logger.error('Failed to send notification email', { error: error.message }));
+      .catch(error => logger.error('Failed to send notification email', {
+        error: error.message,
+        requestId: stored.id,
+        email: data.email
+      }));
 
     return res.status(201).json({
       status: 'ok',
