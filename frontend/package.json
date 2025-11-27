@@ -1,0 +1,11 @@
+{
+  "name": "gps-instal-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for GPS INSTAL",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

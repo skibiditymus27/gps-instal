@@ -1,3 +1,11 @@
+function isPhoneValid(value) {
+  return /^[+]?\d[\d\s-]{6,}$/.test(value);
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { isPhoneValid };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const observedSections = document.querySelectorAll('[data-observe]');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -38,10 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!formFeedback) return;
     formFeedback.textContent = '';
     formFeedback.classList.remove('error', 'success');
-  }
-
-  function isPhoneValid(value) {
-    return /^[+]?\d[\d\s-]{6,}$/.test(value);
   }
 
   function trapFocus(event) {
