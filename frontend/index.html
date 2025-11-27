@@ -103,36 +103,56 @@
   </section>
 
   <section id="contact" class="contact" aria-labelledby="contact-title" data-observe>
-    <h2 id="contact-title">Skontaktuj się z nami</h2>
-    <p class="contact-intro">Wypełnij formularz, a oddzwonimy i zaproponujemy najlepsze rozwiązanie dla Twojej instalacji.</p>
-    <form id="contact-form" aria-describedby="formFeedback">
-      <div class="form-group">
-        <label for="name">Imię i nazwisko</label>
-        <input id="name" name="name" type="text" autocomplete="name" required />
+    <div class="contact-wrapper">
+      <div class="contact-details">
+        <h2 id="contact-title">Skontaktuj się z nami</h2>
+        <p class="contact-intro">Masz pytania dotyczące instalacji? Wypełnij formularz, a oddzwonimy z gotowym rozwiązaniem.</p>
+        
+        <div class="direct-contact">
+          <div class="dc-item">
+            <h3>Telefon</h3>
+            <p>664 337 321</p>
+          </div>
+          <div class="dc-item">
+            <h3>Obszar działania</h3>
+            <p>Lębork i okolice</p>
+          </div>
+          <div class="dc-item">
+            <h3>Godziny pracy</h3>
+            <p>Pon - Pt: 8:00 - 18:00</p>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Adres e-mail</label>
-        <input id="email" name="email" type="email" autocomplete="email" required />
-      </div>
-      <div class="form-group">
-        <label for="phone">Numer telefonu</label>
-        <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="np. +48 664 337 321" required />
-      </div>
-      <div class="form-group">
-        <label for="city">Miejscowość</label>
-        <input id="city" name="city" type="text" autocomplete="address-level2" required />
-      </div>
-      <div class="form-group">
-        <label for="message">Jak możemy pomóc?</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-      </div>
-      <div class="form-guard" aria-hidden="true">
-        <label class="sr-only" for="company">Zostaw to pole puste</label>
-        <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
-      </div>
-      <button type="submit">Wyślij zapytanie</button>
-      <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
-    </form>
+
+      <form id="contact-form" aria-describedby="formFeedback">
+        <div class="form-group">
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder=" " />
+          <label for="name">Imię i nazwisko</label>
+        </div>
+        <div class="form-group">
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder=" " />
+          <label for="email">Adres e-mail</label>
+        </div>
+        <div class="form-group">
+          <input id="phone" name="phone" type="tel" inputmode="tel" required placeholder=" " />
+          <label for="phone">Numer telefonu</label>
+        </div>
+        <div class="form-group">
+          <input id="city" name="city" type="text" autocomplete="address-level2" required placeholder=" " />
+          <label for="city">Miejscowość</label>
+        </div>
+        <div class="form-group full-width">
+          <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+          <label for="message">Wiadomość</label>
+        </div>
+        <div class="form-guard" aria-hidden="true">
+          <label class="sr-only" for="company">Zostaw to pole puste</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <button type="submit">Wyślij wiadomość</button>
+        <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
+      </form>
+    </div>
   </section>
 
   <section id="cta" class="cta" aria-labelledby="cta-title" data-observe>
