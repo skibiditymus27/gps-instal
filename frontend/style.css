@@ -214,6 +214,12 @@ h2::after {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card);
 }
 
 .project-card h3 {
