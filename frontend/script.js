@@ -2,11 +2,11 @@ function isPhoneValid(value) {
   return /^[+]?\d[\d\s-]{6,}$/.test(value);
 }
 
-if (typeof module !== 'undefined') {
-  module.exports = { isPhoneValid };
-}
+function initPage() {
+  if (typeof document === 'undefined' || typeof window === 'undefined') {
+    return;
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
   const observedSections = document.querySelectorAll('[data-observe]');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const raf = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : (cb) => setTimeout(cb, 16);
@@ -225,4 +225,17 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(animation);
     });
   });
-});
+
+  return {
+    showModal,
+    hideModal
+  };
+}
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', initPage);
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { isPhoneValid, initPage };
+}

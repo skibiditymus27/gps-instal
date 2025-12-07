@@ -4,7 +4,9 @@ function errorHandler(err, req, res, next) {
   logger.error('Unhandled error', {
     path: req.path,
     method: req.method,
-    error: err.message
+    status: err.status || 500,
+    error: err.message,
+    stack: err.stack
   });
 
   if (res.headersSent) {

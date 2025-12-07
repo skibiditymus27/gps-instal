@@ -6,6 +6,7 @@ const { handleContact } = require('../controllers/contactController');
 
 const router = express.Router();
 
+// Additional limiter for the contact endpoint on top of global middleware defaults.
 const contactLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 20,
