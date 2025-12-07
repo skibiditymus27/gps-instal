@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const config = require('./config');
 const { securityMiddleware, corsMiddleware } = require('./middleware/security');
 const errorHandler = require('./middleware/errorHandler');
+const { requestIdMiddleware } = require('./middleware/requestId');
 const contactRouter = require('./routes/contact');
 const healthRouter = require('./routes/health');
 
@@ -10,6 +11,7 @@ const app = express();
 
 app.set('trust proxy', 'loopback');
 
+app.use(requestIdMiddleware);
 securityMiddleware.forEach(mw => app.use(mw));
 app.use(express.json({ limit: '256kb' }));
 app.use(express.urlencoded({ extended: false }));

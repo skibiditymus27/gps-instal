@@ -1,12 +1,15 @@
 const logger = require('../utils/logger');
 
 function errorHandler(err, req, res, next) {
+  const requestId = req.id || req.headers['x-request-id'] || null;
+
   logger.error('Unhandled error', {
     path: req.path,
     method: req.method,
     status: err.status || 500,
     error: err.message,
-    stack: err.stack
+    stack: err.stack,
+    requestId
   });
 
   if (res.headersSent) {
