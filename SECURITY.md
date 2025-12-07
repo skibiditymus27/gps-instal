@@ -5,7 +5,7 @@
 - Published release tags (if any)
 
 ### Reporting a Vulnerability
-Please email the maintainer at `skibiditymus27` with:
+Please email the maintainer at `skibiditymus27@gmail.com` with:
 - A concise description of the issue and impact
 - Steps to reproduce or proof-of-concept
 - Suggested remediation (if known)
