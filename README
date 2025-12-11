@@ -33,6 +33,16 @@ Responsive marketing site for GPS INSTAL backed by a hardened API that accepts c
 	```
 	The site becomes available on port 80 (Nginx serves the frontend and proxies `/api` to the backend).
 
+## Access from your local network (without Docker)
+1. Get your LAN IP: `hostname -I` (pick the address in your Wi‑Fi/Ethernet subnet, e.g., `192.168.1.42`).
+2. Backend: from `backend/`, start the API bound to all interfaces: `PORT=3000 npm start`.
+3. CORS: set `ALLOW_ORIGINS=http://<your-lan-ip>:4173` (or the frontend port you pick) in `backend/.env`, then restart the backend.
+4. Frontend: from `frontend/`, run `npm install` (once) then `npm start` to serve static files on port 4173.
+5. Visit from another device on the same network:
+   - Frontend: `http://<your-lan-ip>:4173`
+   - API health check: `http://<your-lan-ip>:3000/api/health`
+Ensure your OS firewall allows these ports.
+
 ## Backend tests
 ```bash
 cd backend

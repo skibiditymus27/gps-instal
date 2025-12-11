@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Frontend for GPS INSTAL",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "serve -l 4173 ."
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "serve": "^14.2.4"
   }
 }
