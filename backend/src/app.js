@@ -6,6 +6,7 @@ const errorHandler = require('./middleware/errorHandler');
 const { requestIdMiddleware } = require('./middleware/requestId');
 const contactRouter = require('./routes/contact');
 const healthRouter = require('./routes/health');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(morgan(config.env === 'production' ? 'combined' : 'dev'));
 
 app.use('/api/health', healthRouter);
 app.use('/api/contact', contactRouter);
+app.use('/api/admin', adminRouter);
 
 app.use('/api/*', corsMiddleware, (req, res) => {
   res.status(404).json({ status: 'error', message: 'Nie znaleziono zasobu.' });

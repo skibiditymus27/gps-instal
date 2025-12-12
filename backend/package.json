@@ -9,7 +9,12 @@
     "lint": "node --check src/server.js",
     "test": "cross-env NODE_ENV=test jest --runInBand"
   },
-  "keywords": ["express", "contact", "api", "gps-instal"],
+  "keywords": [
+    "express",
+    "contact",
+    "api",
+    "gps-instal"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -19,6 +24,7 @@
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
     "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.0",
     "nodemailer": "^7.0.11",
     "pg": "^8.12.0",

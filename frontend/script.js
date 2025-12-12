@@ -189,13 +189,36 @@ function initPage() {
     });
   }
 
-  // Custom smooth scroll for navigation links
-  document.querySelectorAll('header nav a[href^="#"]').forEach(anchor => {
+  // Custom smooth scroll for navigation links (header and footer)
+  const smoothScrollLinks = document.querySelectorAll('header nav a[href^="#"], footer nav a[href^="#"], footer nav a[href*="#"]');
+  
+  smoothScrollLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
+      const href = this.getAttribute('href');
+      
+      // Handle links like "index.html#services" on the same page
+      let targetId;
+      if (href.startsWith('#')) {
+        targetId = href;
+      } else if (href.includes('#')) {
+        // Check if we're on the same page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const linkPage = href.split('#')[0] || 'index.html';
+        
+        if (currentPage === linkPage || linkPage === 'index.html' && currentPage === '') {
+          targetId = '#' + href.split('#')[1];
+        } else {
+          // Different page - let browser handle navigation
+          return;
+        }
+      } else {
+        return;
+      }
+      
       const targetElement = document.querySelector(targetId);
       if (!targetElement) return;
+      
+      e.preventDefault();
 
       const header = document.querySelector('header');
       const headerOffset = header ? header.offsetHeight : 0;
@@ -232,10 +255,103 @@ function initPage() {
   };
 }
 
+// ========================================
+// COOKIE CONSENT (GDPR/RODO)
+// ========================================
+
+function initCookieConsent() {
+  if (typeof document === 'undefined' || typeof window === 'undefined') {
+    return;
+  }
+
+  const cookieBanner = document.getElementById('cookieConsent');
+  const acceptBtn = document.getElementById('acceptCookies');
+  const rejectBtn = document.getElementById('rejectCookies');
+
+  if (!cookieBanner) return;
+
+  // Sprawdź czy użytkownik już dokonał wyboru
+  const consent = localStorage.getItem('cookieConsent');
+  
+  if (consent === null) {
+    // Brak wyboru - pokaż baner z animacją
+    cookieBanner.classList.remove('hidden');
+    setTimeout(() => {
+      cookieBanner.classList.add('show');
+    }, 500); // Opóźnienie na załadowanie strony
+  }
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      localStorage.setItem('cookieConsentDate', new Date().toISOString());
+      hideCookieBanner();
+      // Włącz analitykę jeśli potrzebne
+      enableAnalytics();
+    });
+  }
+
+  if (rejectBtn) {
+    rejectBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'rejected');
+      localStorage.setItem('cookieConsentDate', new Date().toISOString());
+      hideCookieBanner();
+      // Wyłącz analitykę jeśli potrzebne
+      disableAnalytics();
+    });
+  }
+
+  function hideCookieBanner() {
+    cookieBanner.classList.remove('show');
+    setTimeout(() => {
+      cookieBanner.classList.add('hidden');
+    }, 400);
+  }
+}
+
+function enableAnalytics() {
+  // Włączanie cookies analitycznych
+  // Dodaj Google Analytics, Facebook Pixel itp. tutaj gdy potrzebne
+  console.log('Cookies analityczne włączone');
+}
+
+function disableAnalytics() {
+  // Wyłączanie/usuwanie cookies analitycznych
+  // Usuń cookies śledzące tutaj gdy zaimplementowane
+  console.log('Cookies analityczne wyłączone');
+}
+
+// Funkcja sprawdzająca aktualny status zgody
+function getCookieConsent() {
+  return localStorage.getItem('cookieConsent');
+}
+
+// Funkcja resetująca zgodę (przydatne do testów lub strony ustawień)
+function resetCookieConsent() {
+  localStorage.removeItem('cookieConsent');
+  localStorage.removeItem('cookieConsentDate');
+  const cookieBanner = document.getElementById('cookieConsent');
+  if (cookieBanner) {
+    cookieBanner.classList.remove('hidden');
+    setTimeout(() => {
+      cookieBanner.classList.add('show');
+    }, 100);
+  }
+}
+
 if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', initPage);
+  window.addEventListener('DOMContentLoaded', () => {
+    initPage();
+    initCookieConsent();
+  });
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { isPhoneValid, initPage };
+  module.exports = { 
+    isPhoneValid, 
+    initPage, 
+    initCookieConsent, 
+    getCookieConsent, 
+    resetCookieConsent 
+  };
 }
