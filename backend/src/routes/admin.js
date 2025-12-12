@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const pool = require('../db/pool');
 const config = require('../config');
 const logger = require('../utils/logger');
@@ -9,7 +10,15 @@ const router = express.Router();
 // Simple admin credentials (in production, store hashed in DB)
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
 const ADMIN_PASS = process.env.ADMIN_PASS || 'gpsinstal2025';
-const JWT_SECRET = process.env.JWT_SECRET || 'change-me-in-production-' + Math.random();
+
+// Use cryptographically secure random bytes for JWT secret fallback
+// WARNING: In production, always set JWT_SECRET environment variable!
+// A random fallback means tokens are invalidated on server restart.
+const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString('hex');
+
+if (!process.env.JWT_SECRET) {
+  logger.warn('JWT_SECRET not set! Using random secret - tokens will be invalidated on restart.');
+}
 
 // Auth middleware
 function authMiddleware(req, res, next) {
